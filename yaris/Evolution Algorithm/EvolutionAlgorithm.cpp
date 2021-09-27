@@ -9,13 +9,14 @@
 #include "IterationConfig.hpp"
 #include "Individual.hpp"
 #include "EvolutionDelegate.hpp"
+#include "EvolutionOperator.hpp"
 
 // ------------------------------------------------------------------------
 EvolutionAlgorithm::EvolutionAlgorithm(const IterationConfig* iterationConfig,
                                        EvolutionDelegate* delegate)
 {
     this->iterationConfig = iterationConfig;
-    this->delegate        = delegate;
+    this->myDelegate        = delegate;
     
     // Initialise properties
     population = 0;
@@ -39,7 +40,7 @@ Individual* EvolutionAlgorithm::performSearch() {
     
     // Iterate generation new generations of the population.
     for(unsigned i =0; i < iterationConfig->nbOfIterations; ++i) {
-        if(delegate->isIndividualGoodEnough(bestIndividual)) break;
+        if(myDelegate->isIndividualGoodEnough(bestIndividual)) break;
         evolvePopulation();
         auto bestOfGeneration = evaluatePopulation();
         if( bestOfGeneration->fitnessScore > bestIndividual->fitnessScore) {
@@ -63,7 +64,7 @@ void EvolutionAlgorithm::createPopulation() {
     
     // Create the initial population
     for( unsigned i = 0; i < populationSize; ++i) {
-        (*population)[i] = delegate->createIndividual();
+        (*population)[i] = myDelegate->createIndividual();
     }
 }
 
@@ -74,7 +75,7 @@ Individual* EvolutionAlgorithm::evaluatePopulation() {
     auto end = population->end();
     for(auto iter = population->begin(); iter != end; ++iter) {
         if(*iter != 0) {
-            (*iter)->fitnessScore = delegate->evaluateIndividual(*iter);
+            (*iter)->fitnessScore = myDelegate->evaluateIndividual(*iter);
             if( best == 0 || (*iter)->fitnessScore > best->fitnessScore) {
                 best = *iter;
             }
@@ -90,12 +91,17 @@ void EvolutionAlgorithm::emptyPopulation() {
     auto end = population->end();
     for(auto iter = population->begin(); iter != end; ++iter) {
         if(*iter != 0) {
-            delegate->returnIndividual(*iter);
+            myDelegate->returnIndividual(*iter);
             *iter = 0;
         }
     }
 }
  
+// ------------------------------------------------------------------------
+void EvolutionAlgorithm::addOperator(EvolutionOperator* theOperator) {
+    myOperators.push_back(theOperator);
+}
+
 // ------------------------------------------------------------------------
 // Creates a new generation of the population.
 void EvolutionAlgorithm::evolvePopulation() {

@@ -18,11 +18,12 @@ class  EvolutionOperator;
 
 class EvolutionAlgorithm {
     // Genetic Programming configuration
-    EvolutionDelegate* delegate;
+    EvolutionDelegate* myDelegate;
+    
     const IterationConfig*     iterationConfig;
     
     typedef std::vector<EvolutionOperator*>  Operators;
-    Operators operators;
+    Operators myOperators;
     
     // Population related storage
     typedef std::vector<Individual*>    Population;
@@ -33,6 +34,8 @@ public:
     ~EvolutionAlgorithm();
     
     Individual* performSearch();
+    
+    void addOperator(EvolutionOperator*);
 
 protected:
     void createPopulation();
