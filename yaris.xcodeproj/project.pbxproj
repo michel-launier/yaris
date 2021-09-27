@@ -10,7 +10,6 @@
 		D0B9168127014AD500DE7A71 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0B9168027014AD500DE7A71 /* main.cpp */; };
 		D0D7FADF27014FB700AECD27 /* EvolutionDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0D7FAD327014FB700AECD27 /* EvolutionDelegate.cpp */; };
 		D0D7FAE027014FB700AECD27 /* Individual.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0D7FAD627014FB700AECD27 /* Individual.cpp */; };
-		D0D7FAE127014FB700AECD27 /* EvolutionConfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0D7FAD827014FB700AECD27 /* EvolutionConfig.cpp */; };
 		D0D7FAE227014FB700AECD27 /* IterationConfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0D7FAD927014FB700AECD27 /* IterationConfig.cpp */; };
 		D0D7FAE327014FB700AECD27 /* EvolutionAlgorithm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0D7FADC27014FB700AECD27 /* EvolutionAlgorithm.cpp */; };
 		D0D7FAE427014FB700AECD27 /* EvolutionOperator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0D7FADE27014FB700AECD27 /* EvolutionOperator.cpp */; };
@@ -36,10 +35,8 @@
 		D0D7FAD527014FB700AECD27 /* EvolutionOperator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EvolutionOperator.hpp; sourceTree = "<group>"; };
 		D0D7FAD627014FB700AECD27 /* Individual.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Individual.cpp; sourceTree = "<group>"; };
 		D0D7FAD727014FB700AECD27 /* EvolutionDelegate.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EvolutionDelegate.hpp; sourceTree = "<group>"; };
-		D0D7FAD827014FB700AECD27 /* EvolutionConfig.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EvolutionConfig.cpp; sourceTree = "<group>"; };
 		D0D7FAD927014FB700AECD27 /* IterationConfig.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IterationConfig.cpp; sourceTree = "<group>"; };
 		D0D7FADA27014FB700AECD27 /* IterationConfig.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = IterationConfig.hpp; sourceTree = "<group>"; };
-		D0D7FADB27014FB700AECD27 /* EvolutionConfig.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EvolutionConfig.hpp; sourceTree = "<group>"; };
 		D0D7FADC27014FB700AECD27 /* EvolutionAlgorithm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EvolutionAlgorithm.cpp; sourceTree = "<group>"; };
 		D0D7FADD27014FB700AECD27 /* EvolutionAlgorithm.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EvolutionAlgorithm.hpp; sourceTree = "<group>"; };
 		D0D7FADE27014FB700AECD27 /* EvolutionOperator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EvolutionOperator.cpp; sourceTree = "<group>"; };
@@ -86,8 +83,6 @@
 			children = (
 				D0D7FADC27014FB700AECD27 /* EvolutionAlgorithm.cpp */,
 				D0D7FADD27014FB700AECD27 /* EvolutionAlgorithm.hpp */,
-				D0D7FAD827014FB700AECD27 /* EvolutionConfig.cpp */,
-				D0D7FADB27014FB700AECD27 /* EvolutionConfig.hpp */,
 				D0D7FAD327014FB700AECD27 /* EvolutionDelegate.cpp */,
 				D0D7FAD727014FB700AECD27 /* EvolutionDelegate.hpp */,
 				D0D7FADE27014FB700AECD27 /* EvolutionOperator.cpp */,
@@ -162,7 +157,6 @@
 				D0B9168127014AD500DE7A71 /* main.cpp in Sources */,
 				D0D7FAE027014FB700AECD27 /* Individual.cpp in Sources */,
 				D0D7FAE227014FB700AECD27 /* IterationConfig.cpp in Sources */,
-				D0D7FAE127014FB700AECD27 /* EvolutionConfig.cpp in Sources */,
 				D0D7FAE427014FB700AECD27 /* EvolutionOperator.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

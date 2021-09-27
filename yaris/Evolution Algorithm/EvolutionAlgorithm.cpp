@@ -7,17 +7,14 @@
 
 #include "EvolutionAlgorithm.hpp"
 #include "IterationConfig.hpp"
-#include "EvolutionConfig.hpp"
 #include "Individual.hpp"
 #include "EvolutionDelegate.hpp"
 
 // ------------------------------------------------------------------------
 EvolutionAlgorithm::EvolutionAlgorithm(const IterationConfig* iterationConfig,
-                         const EvolutionConfig* evolutionConfig,
-                               EvolutionDelegate* delegate)
+                                       EvolutionDelegate* delegate)
 {
     this->iterationConfig = iterationConfig;
-    this->evolutionConfig = evolutionConfig;
     this->delegate        = delegate;
     
     // Initialise properties
