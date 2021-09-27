@@ -6,29 +6,27 @@
 //
 
 #include "EvolutionAlgorithm.hpp"
-#include "IterationConfig.hpp"
+#include "AlgorithmConfig.hpp"
 #include "Individual.hpp"
 #include "EvolutionDelegate.hpp"
 #include "EvolutionOperator.hpp"
 
 // ------------------------------------------------------------------------
-EvolutionAlgorithm::EvolutionAlgorithm(const IterationConfig* iterationConfig,
+EvolutionAlgorithm::EvolutionAlgorithm(const AlgorithmConfig* iterationConfig,
                                        EvolutionDelegate* delegate)
 {
     this->iterationConfig = iterationConfig;
-    this->myDelegate        = delegate;
+    this->myDelegate      = delegate;
     
     // Initialise properties
-    population = 0;
+    currentGeneration = &generationA;
+    nextGeneration    = &generationB;
 }
 
 // ------------------------------------------------------------------------
 EvolutionAlgorithm::~EvolutionAlgorithm() {
     // Release population memory.
-    if(population != 0) {
-        emptyPopulation();
-        delete population;
-    }
+
 }
 
 // ------------------------------------------------------------------------
@@ -72,8 +70,8 @@ void EvolutionAlgorithm::createPopulation() {
 // Evaluate the fitness score for each individual in the population.
 Individual* EvolutionAlgorithm::evaluatePopulation() {
     Individual* best = 0;
-    auto end = population->end();
-    for(auto iter = population->begin(); iter != end; ++iter) {
+    auto end = currentGeneration->end();
+    for(auto iter = currentGeneration->begin(); iter != end; ++iter) {
         if(*iter != 0) {
             (*iter)->fitnessScore = myDelegate->evaluateIndividual(*iter);
             if( best == 0 || (*iter)->fitnessScore > best->fitnessScore) {

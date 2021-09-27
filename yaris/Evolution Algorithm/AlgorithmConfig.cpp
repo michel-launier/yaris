@@ -1,13 +1,13 @@
 //
-//  IterationConfig.cpp
+//  AlgorithmConfig.cpp
 //  genetic-programming
 //
 //  Created by Michel Launier on 2021-09-08.
 //
 
-#include "IterationConfig.hpp"
+#include "AlgorithmConfig.hpp"
 
-IterationConfig::IterationConfig(unsigned populationSize,
+AlgorithmConfig::AlgorithmConfig(unsigned populationSize,
                                  unsigned nbOfIterations,
                                  float selectionRatio) {
     this->nbOfIterations = nbOfIterations;

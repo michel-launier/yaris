@@ -11,7 +11,7 @@
 #include <vector>
 
 // Forward References
-struct IterationConfig;
+struct AlgorithmConfig;
 class  EvolutionDelegate;
 class  Individual;
 class  EvolutionOperator;
@@ -20,17 +20,20 @@ class EvolutionAlgorithm {
     // Genetic Programming configuration
     EvolutionDelegate* myDelegate;
     
-    const IterationConfig*     iterationConfig;
+    const AlgorithmConfig*     iterationConfig;
     
     typedef std::vector<EvolutionOperator*>  Operators;
     Operators myOperators;
     
     // Population related storage
     typedef std::vector<Individual*>    Population;
-    Population*  population;
+    Population* currentGeneration;
+    Population* nextGeneration;
+    Population  generationA;
+    Population  generationB;
 
 public:
-    EvolutionAlgorithm(const IterationConfig*, EvolutionDelegate*);
+    EvolutionAlgorithm(const AlgorithmConfig*, EvolutionDelegate*);
     ~EvolutionAlgorithm();
     
     Individual* performSearch();
