@@ -9,11 +9,16 @@
 #define Individual_hpp
 
 class Individual {
+    unsigned retainCnt;
+
 public:
     float fitnessScore;
     
     Individual();
-    virtual ~Individual() = 0;  // Allow delete from subclass
+    virtual ~Individual() = 0;  ///< Allow delete from subclass
+
+    void retain()   { ++retainCnt; }
+    void release();
 };
 
 #endif /* Individual_hpp */

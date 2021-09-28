@@ -11,16 +11,16 @@
 #include <vector>
 
 // Forward References
-struct AlgorithmConfig;
-class  EvolutionDelegate;
-class  Individual;
-class  EvolutionOperator;
+class AlgorithmConfig;
+class EvolutionDelegate;
+class Individual;
+class EvolutionOperator;
 
 class EvolutionAlgorithm {
     // Genetic Programming configuration
     EvolutionDelegate* myDelegate;
     
-    const AlgorithmConfig*     iterationConfig;
+    const AlgorithmConfig*     algorithmConfig;
     
     typedef std::vector<EvolutionOperator*>  Operators;
     Operators myOperators;
@@ -36,12 +36,12 @@ public:
     EvolutionAlgorithm(const AlgorithmConfig*, EvolutionDelegate*);
     ~EvolutionAlgorithm();
     
-    Individual* performSearch();
+    Individual* run();
     
     void addOperator(EvolutionOperator*);
 
 protected:
-    void createPopulation();
+    void createInitialPopulation();
     Individual* evaluatePopulation();
     void emptyPopulation();
     void evolvePopulation();

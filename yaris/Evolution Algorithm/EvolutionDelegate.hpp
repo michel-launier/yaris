@@ -14,7 +14,7 @@ class Individual;
 class EvolutionDelegate {
 public:
     virtual Individual*  createIndividual() const = 0;
-    virtual void         returnIndividual(Individual*) = 0;
+    virtual void         releaseIndividual(Individual*) = 0;
     virtual float        evaluateIndividual(const Individual*) const = 0;
     virtual bool         isIndividualGoodEnough(const Individual*) const = 0;
 };

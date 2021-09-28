@@ -8,7 +8,8 @@
 #ifndef AlgorithmConfig_hpp
 #define AlgorithmConfig_hpp
 
-struct AlgorithmConfig {
+class AlgorithmConfig {
+public:
     unsigned nbOfIterations;
     unsigned populationSize;
     unsigned selectionSize;
