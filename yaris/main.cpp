@@ -6,7 +6,7 @@
 //
 
 #include <iostream>
-#include "EvolutionAlgorithm/Mrc.hpp"
+#include "Common/Mrc.hpp"
 
 class TestObject : public Mrc {
 public:
