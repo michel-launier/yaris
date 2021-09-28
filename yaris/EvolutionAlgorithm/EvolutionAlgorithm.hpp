@@ -9,6 +9,7 @@
 #define EvolutionAlgorithm_h
 
 #include <vector>
+#include "../Common/Mrc.hpp"
 
 // Forward References
 class AlgorithmConfig;
@@ -26,7 +27,7 @@ class EvolutionAlgorithm {
     Operators myOperators;
     
     // Population related storage
-    typedef std::vector<Individual*>    Population;
+    typedef std::vector< MrcPtr<Individual> >   Population;
     Population* currentGeneration;
     Population* nextGeneration;
     Population  generationA;

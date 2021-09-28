@@ -8,17 +8,15 @@
 #ifndef Individual_hpp
 #define Individual_hpp
 
-class Individual {
-    unsigned retainCnt;
+#include "../Common/Mrc.hpp"
+
+class Individual : public Mrc {
 
 public:
     float fitnessScore;
     
     Individual();
     virtual ~Individual() = 0;  ///< Allow delete from subclass
-
-    void retain()   { ++retainCnt; }
-    void release();
 };
 
 #endif /* Individual_hpp */

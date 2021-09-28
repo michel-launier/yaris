@@ -35,7 +35,7 @@ EvolutionAlgorithm::~EvolutionAlgorithm() {
     for (; iter != end; ++iter) {
         auto individual = *iter;
         if (individual != 0) {
-            myDelegate->releaseIndividual(individual);
+            individual->release();
         }
     }
     iter = generationB.begin();
@@ -43,7 +43,7 @@ EvolutionAlgorithm::~EvolutionAlgorithm() {
     for (; iter != end; ++iter) {
         auto individual = *iter;
         if (individual != 0) {
-            myDelegate->releaseIndividual(individual);
+            individual->release();
         }
     }
 }
@@ -88,13 +88,13 @@ void EvolutionAlgorithm::createInitialPopulation() {
 /// Evaluate the fitness score for each individual in the population.
 ///
 Individual* EvolutionAlgorithm::evaluatePopulation() {
-    Individual* best = 0;
+    MrcPtr<Individual> best = 0;
     auto end = currentGeneration->end();
     for(auto iter = currentGeneration->begin(); iter != end; ++iter) {
         auto individual = *iter;
-        if(individual != 0) {
-            individual->fitnessScore = myDelegate->evaluateIndividual(individual);
-            if( best == 0 || individual->fitnessScore > best->fitnessScore) {
+        if(individual.isNotNull()) {
+            individual->fitnessScore = myDelegate->evaluateIndividual(individual.getPtr());
+            if( best.isNull() || individual->fitnessScore > best->fitnessScore) {
                 best = individual;
             }
         }
@@ -132,8 +132,8 @@ void EvolutionAlgorithm::evolvePopulation() {
     auto end  = previousdGeneration->end();
     for (; iter != end; ++iter) {
         auto individual = *iter;
-        if (individual != 0) {
-            myDelegate->releaseIndividual(individual);
+        if (individual.isNotNull()) {
+            individual->release();
         }
     }
 }

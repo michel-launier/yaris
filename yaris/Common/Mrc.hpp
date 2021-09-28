@@ -39,14 +39,16 @@ public:
     ~_MrcPtr();
 
     Mrc* assign(Mrc* p);
-    Mrc* getPtr() const { return ptr; }
+    Mrc* getPtr() const     { return ptr; }
+    bool isNull() const     { return ptr == 0; }
+    bool isNotNull() const  { return ptr != 0; }
 };
 
 // ---------------------------------------------------------------------------
 /// Type specific pointer to automate the retention and release of Mrc objects.
 ///
 template <typename T>
-class MrcPtr : _MrcPtr {
+class MrcPtr : public _MrcPtr {
 public:
     MrcPtr(T* p) : _MrcPtr(p)   {}
     
