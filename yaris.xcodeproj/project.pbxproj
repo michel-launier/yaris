@@ -75,13 +75,13 @@
 		D0B9167F27014AD500DE7A71 /* yaris */ = {
 			isa = PBXGroup;
 			children = (
-				D0D7FAD227014F7C00AECD27 /* Evolution Algorithm */,
+				D0D7FAD227014F7C00AECD27 /* EvolutionAlgorithm */,
 				D0B9168027014AD500DE7A71 /* main.cpp */,
 			);
 			path = yaris;
 			sourceTree = "<group>";
 		};
-		D0D7FAD227014F7C00AECD27 /* Evolution Algorithm */ = {
+		D0D7FAD227014F7C00AECD27 /* EvolutionAlgorithm */ = {
 			isa = PBXGroup;
 			children = (
 				D0D7FADC27014FB700AECD27 /* EvolutionAlgorithm.cpp */,
@@ -97,7 +97,7 @@
 				D0D7FAE52702D9F000AECD27 /* Mrc.cpp */,
 				D0D7FAE62702D9F000AECD27 /* Mrc.hpp */,
 			);
-			path = "Evolution Algorithm";
+			path = EvolutionAlgorithm;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
