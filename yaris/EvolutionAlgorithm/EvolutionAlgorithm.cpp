@@ -17,7 +17,7 @@ EvolutionAlgorithm::EvolutionAlgorithm(const AlgorithmConfig* algorithmConfig,
     : bestIndividual(0)
 {
     this->algorithmConfig = algorithmConfig;
-    this->myDelegate      = delegate;
+    this->delegate        = delegate;
     
     // Create storage for population
     generationA.resize(algorithmConfig->populationSize);
@@ -39,11 +39,11 @@ Individual* EvolutionAlgorithm::run() {
     createInitialPopulation();
     bestIndividual = evaluatePopulation();
     
-    // Iterate generation new generations of the population.
+    // Iterate creating new generations of the population until a good individual if found.
     auto maxGeneration = algorithmConfig->maxGeneration;
     for(unsigned i = 0; i < maxGeneration; ++i) {
         // Stop if we found an individual that satisfies the goal
-        if(myDelegate->isIndividualGoodEnough(bestIndividual)) break;
+        if(delegate->isIndividualGoodEnough(bestIndividual)) break;
         // Create a new generation
         evolvePopulation();
         // Evaluate the new generation of individuals
@@ -63,7 +63,7 @@ void EvolutionAlgorithm::createInitialPopulation() {
     // Create the initial population
     auto populationSize = currentGeneration->size();
     for( unsigned i = 0; i < populationSize; ++i) {
-        (*currentGeneration)[i] = myDelegate->createIndividual();
+        (*currentGeneration)[i] = delegate->createIndividual();
     }
 }
 
@@ -77,7 +77,7 @@ Individual* EvolutionAlgorithm::evaluatePopulation() {
     for(; iter != end; ++iter) {
         Individual* individual = *iter;
         if( individual != 0 ) {
-            individual->fitnessScore = myDelegate->evaluateIndividual(individual);
+            individual->fitnessScore = delegate->evaluateIndividual(individual);
             if( best == 0 || individual->fitnessScore > best->fitnessScore) {
                 best = individual;
             }

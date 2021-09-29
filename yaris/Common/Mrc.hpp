@@ -15,11 +15,11 @@ class Mrc {
     int retainCnt;  ///< Count of the number of users
 
 public:
-            Mrc()                   { retainCnt = 0; }
+    Mrc()                   { retainCnt = 0; }
 
-            void retain()           { ++retainCnt; }
-            void release()          { if (--retainCnt <= 0) dispose(); }
-            int  getRetainCount()   { return retainCnt; }
+    void retain()           { ++retainCnt; }
+    void release()          { if (--retainCnt <= 0) dispose(); }
+    int  getRetainCount()   { return retainCnt; }
 
 protected:
     virtual void dispose()          { delete this; }
