@@ -39,6 +39,7 @@ public:
     ~_MrcPtr();
 
     Mrc* assign(Mrc* p);
+    Mrc* assign(_MrcPtr p);
     Mrc* getPtr() const     { return ptr; }
     bool isNull() const     { return ptr == 0; }
     bool isNotNull() const  { return ptr != 0; }
