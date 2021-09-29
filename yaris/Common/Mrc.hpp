@@ -40,9 +40,10 @@ public:
 
     Mrc* assign(Mrc* p);
     Mrc* assign(_MrcPtr p);
-    Mrc* getPtr() const     { return ptr; }
-    bool isNull() const     { return ptr == 0; }
-    bool isNotNull() const  { return ptr != 0; }
+    Mrc* getPtr() const         { return ptr; }
+    bool isNull() const         { return ptr == 0; }
+    bool isNotNull() const      { return ptr != 0; }
+    int  getRetainCount() const { return ptr != 0 ? ptr->getRetainCount() : 0; }
 };
 
 // ---------------------------------------------------------------------------
