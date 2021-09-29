@@ -14,6 +14,7 @@
 // ------------------------------------------------------------------------
 EvolutionAlgorithm::EvolutionAlgorithm(const AlgorithmConfig* algorithmConfig,
                                        EvolutionDelegate* delegate)
+    : bestIndividual(0)
 {
     this->algorithmConfig = algorithmConfig;
     this->myDelegate      = delegate;
@@ -28,25 +29,7 @@ EvolutionAlgorithm::EvolutionAlgorithm(const AlgorithmConfig* algorithmConfig,
 // ------------------------------------------------------------------------
 /// Release objects allocated by this algorithm run.
 ///
-EvolutionAlgorithm::~EvolutionAlgorithm() {
-    // Release individuals in population A & B.
-    auto iter = generationA.begin();
-    auto end  = generationA.end();
-    for (; iter != end; ++iter) {
-        auto individual = *iter;
-        if (individual != 0) {
-            individual->release();
-        }
-    }
-    iter = generationB.begin();
-    end  = generationB.end();
-    for (; iter != end; ++iter) {
-        auto individual = *iter;
-        if (individual != 0) {
-            individual->release();
-        }
-    }
-}
+EvolutionAlgorithm::~EvolutionAlgorithm() {}
 
 // ------------------------------------------------------------------------
 /// Run the evolution algorithm and extract the best individual.
@@ -54,10 +37,11 @@ EvolutionAlgorithm::~EvolutionAlgorithm() {
 Individual* EvolutionAlgorithm::run() {
     // Create initial population.
     createInitialPopulation();
-    auto bestIndividual = evaluatePopulation();
+    bestIndividual = evaluatePopulation();
     
     // Iterate generation new generations of the population.
-    for(unsigned i = 0; i < algorithmConfig->nbOfIterations; ++i) {
+    auto maxGeneration = algorithmConfig->maxGeneration;
+    for(unsigned i = 0; i < maxGeneration; ++i) {
         // Stop if we found an individual that satisfies the goal
         if(myDelegate->isIndividualGoodEnough(bestIndividual)) break;
         // Create a new generation
@@ -70,7 +54,6 @@ Individual* EvolutionAlgorithm::run() {
     }
 
     // Return the best individual of the run.
-    // TODO: Must avoid releasing the best individual returned.
     return bestIndividual;
 }
 
@@ -88,13 +71,14 @@ void EvolutionAlgorithm::createInitialPopulation() {
 /// Evaluate the fitness score for each individual in the population.
 ///
 Individual* EvolutionAlgorithm::evaluatePopulation() {
-    MrcPtr<Individual> best = 0;
-    auto end = currentGeneration->end();
-    for(auto iter = currentGeneration->begin(); iter != end; ++iter) {
-        auto individual = *iter;
-        if(individual.isNotNull()) {
-            individual->fitnessScore = myDelegate->evaluateIndividual(individual.getPtr());
-            if( best.isNull() || individual->fitnessScore > best->fitnessScore) {
+    Individual* best = 0;
+    auto iter = currentGeneration->begin();
+    auto end  = currentGeneration->end();
+    for(; iter != end; ++iter) {
+        Individual* individual = *iter;
+        if( individual != 0 ) {
+            individual->fitnessScore = myDelegate->evaluateIndividual(individual);
+            if( best == 0 || individual->fitnessScore > best->fitnessScore) {
                 best = individual;
             }
         }
@@ -131,9 +115,6 @@ void EvolutionAlgorithm::evolvePopulation() {
     auto iter = previousdGeneration->begin();
     auto end  = previousdGeneration->end();
     for (; iter != end; ++iter) {
-        auto individual = *iter;
-        if (individual.isNotNull()) {
-            individual->release();
-        }
+        (*iter) = 0;
     }
 }

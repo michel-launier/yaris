@@ -50,10 +50,12 @@ public:
 template <typename T>
 class MrcPtr : public _MrcPtr {
 public:
+    MrcPtr()     : _MrcPtr(0)   {}
     MrcPtr(T* p) : _MrcPtr(p)   {}
     
-    T* operator=(T* p)  { return dynamic_cast<T*>( assign(p) ); }
-    T* operator->()     { return dynamic_cast<T*>( getPtr() ); }
+    T* operator=(T* p)      { return dynamic_cast<T*>( assign(p) ); }
+    T* operator->() const   { return dynamic_cast<T*>( getPtr() ); }
+       operator T*() const  { return dynamic_cast<T*>( getPtr() ); }
 };
 
 #endif /* Mrc_hpp */

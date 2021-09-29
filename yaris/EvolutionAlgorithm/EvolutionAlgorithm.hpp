@@ -18,6 +18,8 @@ class Individual;
 class EvolutionOperator;
 
 class EvolutionAlgorithm {
+    MrcPtr<Individual>  bestIndividual; ///< The best individual of the run
+    
     // Genetic Programming configuration
     EvolutionDelegate* myDelegate;
     

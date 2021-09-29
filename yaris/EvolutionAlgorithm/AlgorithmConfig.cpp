@@ -8,9 +8,9 @@
 #include "AlgorithmConfig.hpp"
 
 AlgorithmConfig::AlgorithmConfig(unsigned populationSize,
-                                 unsigned nbOfIterations,
+                                 unsigned maxGeneration,
                                  float selectionRatio) {
-    this->nbOfIterations = nbOfIterations;
+    this->maxGeneration  = maxGeneration;
     this->populationSize = populationSize;
     this->selectionSize  = selectionRatio * populationSize;
 }

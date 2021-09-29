@@ -11,7 +11,6 @@
 #include "../Common/Mrc.hpp"
 
 class Individual : public Mrc {
-
 public:
     float fitnessScore;
     

@@ -10,11 +10,11 @@
 
 class AlgorithmConfig {
 public:
-    unsigned nbOfIterations;
+    unsigned maxGeneration;
     unsigned populationSize;
     unsigned selectionSize;
 
-    AlgorithmConfig(unsigned populationSize, unsigned nbOfIterations, float selectionRatio = 0.1);
+    AlgorithmConfig(unsigned populationSize, unsigned maxGeneration, float selectionRatio = 0.1);
 };
 
 
