@@ -10,6 +10,7 @@
 #include "Individual.hpp"
 #include "EvolutionDelegate.hpp"
 #include "EvolutionOperator.hpp"
+#include "Common/Prelude.hpp"
 
 // ------------------------------------------------------------------------
 EvolutionAlgorithm::EvolutionAlgorithm(const AlgorithmConfig* algorithmConfig,
@@ -112,6 +113,8 @@ void EvolutionAlgorithm::evolvePopulation() {
     nextGeneration = previousdGeneration;
     
     // Release the individuals of the previoud generation.
+    Prelude::forEach(previousdGeneration, [](auto ip) { ip = 0; });
+    
     auto iter = previousdGeneration->begin();
     auto end  = previousdGeneration->end();
     for (; iter != end; ++iter) {
