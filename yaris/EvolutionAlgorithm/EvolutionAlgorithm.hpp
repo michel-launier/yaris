@@ -46,7 +46,6 @@ public:
 protected:
     void createInitialPopulation();
     Individual* evaluatePopulation();
-    void emptyPopulation();
     void evolvePopulation();
 };
 

@@ -14,10 +14,10 @@
 class Individual;
 
 class EvolutionOperator {
+public:
     float       selectionProbability;   ///< The probability that this operator is selected
     unsigned    nbOfIndividualsNeeded;  ///< Number of individual needed by the operator
 
-public:
     EvolutionOperator(float selectionProbability, unsigned nbOfIndividualsNeeded);
 
     virtual Individual* createIndividual(std::vector<Individual*>) = 0;

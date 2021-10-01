@@ -15,7 +15,6 @@ public:
     float fitnessScore;
     
     Individual();
-    virtual ~Individual() = 0;  ///< Allow delete from subclass
 };
 
 #endif /* Individual_hpp */

@@ -10,7 +10,6 @@
 #include "Individual.hpp"
 #include "EvolutionDelegate.hpp"
 #include "EvolutionOperator.hpp"
-#include "Common/Prelude.hpp"
 
 // ------------------------------------------------------------------------
 EvolutionAlgorithm::EvolutionAlgorithm(const AlgorithmConfig* algorithmConfig,
@@ -66,6 +65,10 @@ void EvolutionAlgorithm::createInitialPopulation() {
     for( unsigned i = 0; i < populationSize; ++i) {
         (*currentGeneration)[i] = delegate->createIndividual();
     }
+    
+//    std::for_each(currentGeneration->begin(),
+//                  currentGeneration->end(),
+//                  [this](auto individual) { individual = delegate->createIndividual(); });
 }
 
 // ------------------------------------------------------------------------
@@ -85,11 +88,6 @@ Individual* EvolutionAlgorithm::evaluatePopulation() {
         }
     }
     return best;
-}
-
-// ------------------------------------------------------------------------
-// Destroy and release memory for all individuals in the given population.
-void EvolutionAlgorithm::emptyPopulation() {
 }
  
 // ------------------------------------------------------------------------
@@ -112,12 +110,8 @@ void EvolutionAlgorithm::evolvePopulation() {
     currentGeneration = nextGeneration;
     nextGeneration = previousdGeneration;
     
-    // Release the individuals of the previoud generation.
-    Prelude::forEach(previousdGeneration, [](auto ip) { ip = 0; });
-    
-    auto iter = previousdGeneration->begin();
-    auto end  = previousdGeneration->end();
-    for (; iter != end; ++iter) {
-        (*iter) = 0;
-    }
+    // Release the individuals of the previous generation.
+    std::for_each(previousdGeneration->begin(),
+                  previousdGeneration->end(),
+                  [](auto individual) { individual = 0; });
 }
