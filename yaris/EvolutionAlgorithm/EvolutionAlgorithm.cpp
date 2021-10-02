@@ -111,7 +111,8 @@ void EvolutionAlgorithm::evolvePopulation() {
     nextGeneration = previousdGeneration;
     
     // Release the individuals of the previous generation.
-    std::for_each(previousdGeneration->begin(),
-                  previousdGeneration->end(),
-                  [](auto individual) { individual = 0; });
+    auto size = previousdGeneration->size();
+    for (unsigned i = 0; i < size; ++i) {
+        (*previousdGeneration)[i] = 0;
+    }
 }
